@@ -39,6 +39,11 @@ header{
     
 }
 
+footer{
+    display: flex;
+    justify-content: center;
+}
+
 .btn
 {
     padding: 10px 25px;
@@ -90,5 +95,11 @@ display: flex;
 justify-content: center;
 margin: 30px 0 20px;
 flex-wrap: wrap;
+}
+
+.rodape_valor {
+    margin: 20px 5px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
