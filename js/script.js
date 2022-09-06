@@ -4,35 +4,41 @@ const ListaProdutos = [
         preco: 2,
         secao: 'Hortifruti',
         categoria: 'fruta',
-        img: './img/banana.jfif'
+        img: './img/banana.jfif',
+        id: 'ban1'
     },
     {
         nome: 'Morango',
         preco: 2,
         secao: 'Hortifruti',
         categoria: 'fruta',
-        img: './img/morango.jfif'
+        img: './img/morango.jfif',
+        id: 'mor2'
     },
     {
         nome: 'Maçã',
         preco: 2,
         secao: 'Hortifruti',
         categoria: 'fruta',
-        img: './img/maca.jfif'
+        img: './img/maca.jfif',
+        id: 'mac3'
     },
     {
         nome: 'Pão',
         preco: 4,
         secao: 'Panificadora',
         categoria: 'Pães',
-        img: './img/pao.jfif'
+        img: './img/pao.jfif',
+        id: 'pao4'
+
     },
     {
         nome: 'Leite',
         preco: 5,
         secao: 'Laticinio',
         categoria: 'Leite',
-        img: './img/leite.jfif'
+        img: './img/leite.jfif',
+        id: 'lei5'
     }
 ]
 
@@ -44,6 +50,7 @@ let btn2 = document.querySelector('.btn_black')
 
 
 let res = document.querySelector('#res')
+res.innerHTML = `R$ 0,00`
 
 
 btn2.addEventListener('click', filtrarUm)
@@ -51,26 +58,30 @@ btn1.addEventListener('click',filtrarTodos)
 btn.addEventListener('click',filtrarHortifruti)
 
 
+
 function filtrarHortifruti(){
 
-    let hortifruti = ListaProdutos.filter(obj => obj.secao === 'Hortifruti')
+    let hortifruti = ListaProdutos.filter(obj => obj.secao === 'Hortifruti');
 
-     mostrarProdutos(hortifruti)
+     mostrarProdutos(hortifruti);
 }
 
 function filtrarTodos(){
-    let todos = [...ListaProdutos]
 
-    mostrarProdutos(todos)
+    let todos = [...ListaProdutos];
+
+    mostrarProdutos(todos);
 }
 
 function filtrarUm(){
     
-    let valor = document.querySelector('.btn_input').value
+    let valor = document.querySelector('.btn_input').value;
 
-    let selecionarUm = ListaProdutos.filter(obj => obj.nome === valor || obj.secao === valor)
-
-     selecionarUm.length !== 0 ?  mostrarProdutos(selecionarUm) : res.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`
+    
+    let selecionarUm = ListaProdutos
+    .filter(obj => obj.nome.toLowerCase() === valor.toLowerCase() || obj.secao.toLowerCase() === valor.toLowerCase());
+     
+     selecionarUm.length !== 0 ?  mostrarProdutos(selecionarUm) : res.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`;
  
 }
 
@@ -81,29 +92,33 @@ function mostrarProdutos(produtos){
     apagarTags('ul')
     
 
-   for(let i = 0; i < produtos.length; i++)
-   {
+    for (let i = 0; i < produtos.length; i++)
+    {
+        
+        
 
-    adicionarTag(document.getElementById('lista'),'ul')
+        adicionarTag(document.getElementById('lista'),'ul')
     
-    
-    adicionarTag(document.getElementsByTagName('ul')[i],'li')
-
-    let tags = ['img','h3','p','span']
-    
-    adicionarTags(document.getElementsByTagName('li')[i], tags)
-    
-    let img = document.getElementsByTagName('img')[i]
-    let h3 = document.getElementsByTagName('h3')[i]
-    let p = document.getElementsByTagName('p')[i]
-    let span = document.getElementsByTagName('span')[i]
-
-    adicionarConteudoTag(img,'src',produtos[i].img)
-    adicionarConteudoTag(img,"alt",produtos[i].nome)
-    adicionarConteudoTag(h3,"innerText",produtos[i].nome)
-    adicionarConteudoTag(p,"innerText",produtos[i].preco)
-    adicionarConteudoTag(span,"innerText",produtos[i].secao)
-
+        adicionarTag(document.getElementsByTagName('ul')[i],'li')
+        
+        let tags = ['img','h3','p','span','button']
+        adicionarTags(document.getElementsByTagName('li')[i], tags)
+        
+        let img = document.getElementsByTagName('img')[i]
+        let h3 = document.getElementsByTagName('h3')[i]
+        let p = document.getElementsByTagName('p')[i]
+        let span = document.getElementsByTagName('span')[i]
+        let button = document.getElementsByTagName('button')[i]
+        
+        adicionarConteudoTag(img,'src',produtos[i].img)
+        adicionarConteudoTag(img,"alt",produtos[i].nome)
+        adicionarConteudoTag(h3,"innerText",produtos[i].nome)
+        adicionarConteudoTag(p,"innerText",produtos[i].preco)
+        adicionarConteudoTag(span,"innerText",produtos[i].secao)
+        adicionarConteudoTag(button,"innerText",'Comprar')
+        adicionarConteudoTag(button,"id",produtos[i].id)
+        button.setAttribute("class","btn_produtos")
+        button.setAttribute("class","btn")
    }
 
    let somar = produtos.map(obj => Number(obj.preco)).reduce((inicio,proximo) => {return inicio + proximo})
@@ -118,9 +133,9 @@ function apagarTags(tag){
 
     let tags = document.querySelectorAll(tag)
 
-    for(let i = 0; i < tags.length; i++)
+    for (let i = 0; i < tags.length; i++)
     {
-        document.querySelectorAll(tag)[i].innerHTML = '' 
+        document.querySelectorAll(tag)[0].remove() 
     }
 }
 
@@ -131,7 +146,7 @@ function adicionarTag(elementoSelecionado, tag){
 
 function adicionarTags(elementoSelecionado, tags){
 
-    for(let i = 0; i < tags.length; i++)
+    for (let i = 0; i < tags.length; i++)
     {
         elementoSelecionado.appendChild(document.createElement(tags[i]))
     }
