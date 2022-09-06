@@ -36,10 +36,8 @@ const ListaProdutos = [
     }
 ]
 
+
    
-    
-
-
 let btn = document.querySelector('.btn_vermelho')
 let btn1 = document.querySelector('.btn_cinza')
 let btn2 = document.querySelector('.btn_black')
@@ -51,19 +49,6 @@ let res = document.querySelector('#res')
 btn2.addEventListener('click', filtrarUm)
 btn1.addEventListener('click',filtrarTodos)
 btn.addEventListener('click',filtrarHortifruti)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function mostrarProdutos(produtos){
