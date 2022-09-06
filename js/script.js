@@ -30,7 +30,7 @@ const ListaProdutos = [
     {
         nome: 'Leite',
         preco: 5,
-        secao: 'Laticínio',
+        secao: 'Laticinio',
         categoria: 'Leite',
         img: './img/leite.jfif'
     }
@@ -66,14 +66,9 @@ btn.addEventListener('click',filtrarHortifruti)
 
 
 
-
-
-
-
-
-
 function mostrarProdutos(produtos){
    
+
    const ul = document.querySelectorAll('ul')
 
     for(let i = 0; i < ul.length; i++)
@@ -101,6 +96,10 @@ function mostrarProdutos(produtos){
     document.getElementsByTagName('p')[i].innerText = produtos[i].preco;
     document.getElementsByTagName('span')[i].innerText = produtos[i].secao;
    }
+
+   let soma = produtos.map(obj => Number(obj.preco)).reduce((inicio,proximo) => {return inicio + proximo})
+
+   res.innerHTML = `R$ ${soma}`
 }
 
 
@@ -122,5 +121,9 @@ function filtrarUm(){
     
     let valor = document.querySelector('.btn_input').value
 
-    res.innerHTML = `Esse [e] o valor ${valor}`
+    let selecionarUm = ListaProdutos.filter(obj => obj.nome === valor || obj.secao === valor)
+
+     selecionarUm.length !== 0 ?  mostrarProdutos(selecionarUm) : res.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`
+
+    
 }
