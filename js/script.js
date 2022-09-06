@@ -51,49 +51,11 @@ btn1.addEventListener('click',filtrarTodos)
 btn.addEventListener('click',filtrarHortifruti)
 
 
-function mostrarProdutos(produtos){
-   
-
-   const ul = document.querySelectorAll('ul')
-
-    for(let i = 0; i < ul.length; i++)
-    {
-        document.querySelectorAll('ul')[i].innerHTML = '' 
-    }
-
-   for(let i = 0; i < produtos.length; i++)
-   {
-    document.getElementById('lista').appendChild(document.createElement('ul'))
-    
-    document.getElementsByTagName('ul')[i].appendChild(document.createElement('li'))
-
-    let tags = ['img','h3','p','span']
-    
-    tags.forEach(tag =>{
-
-        document.getElementsByTagName('li')[i].appendChild(document.createElement(tag)) 
-    })
-
-
-    document.getElementsByTagName('img')[i].src = produtos[i].img;
-    document.getElementsByTagName('img')[i].alt = produtos[i].nome;
-    document.getElementsByTagName('h3')[i].innerText = produtos[i].nome;
-    document.getElementsByTagName('p')[i].innerText = produtos[i].preco;
-    document.getElementsByTagName('span')[i].innerText = produtos[i].secao;
-   }
-
-   let soma = produtos.map(obj => Number(obj.preco)).reduce((inicio,proximo) => {return inicio + proximo})
-
-   res.innerHTML = `R$ ${soma}`
-}
-
-
-
 function filtrarHortifruti(){
 
     let hortifruti = ListaProdutos.filter(obj => obj.secao === 'Hortifruti')
 
-      mostrarProdutos(hortifruti)
+     mostrarProdutos(hortifruti)
 }
 
 function filtrarTodos(){
@@ -109,6 +71,75 @@ function filtrarUm(){
     let selecionarUm = ListaProdutos.filter(obj => obj.nome === valor || obj.secao === valor)
 
      selecionarUm.length !== 0 ?  mostrarProdutos(selecionarUm) : res.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`
-
-    
+ 
 }
+
+
+
+function mostrarProdutos(produtos){
+   
+    apagarTags('ul')
+    
+
+   for(let i = 0; i < produtos.length; i++)
+   {
+
+    adicionarTag(document.getElementById('lista'),'ul')
+    
+    
+    adicionarTag(document.getElementsByTagName('ul')[i],'li')
+
+    let tags = ['img','h3','p','span']
+    
+    adicionarTags(document.getElementsByTagName('li')[i], tags)
+    
+    let img = document.getElementsByTagName('img')[i]
+    let h3 = document.getElementsByTagName('h3')[i]
+    let p = document.getElementsByTagName('p')[i]
+    let span = document.getElementsByTagName('span')[i]
+
+    adicionarConteudoTag(img,'src',produtos[i].img)
+    adicionarConteudoTag(img,"alt",produtos[i].nome)
+    adicionarConteudoTag(h3,"innerText",produtos[i].nome)
+    adicionarConteudoTag(p,"innerText",produtos[i].preco)
+    adicionarConteudoTag(span,"innerText",produtos[i].secao)
+
+   }
+
+   let somar = produtos.map(obj => Number(obj.preco)).reduce((inicio,proximo) => {return inicio + proximo})
+
+   res.innerHTML = `R$ ${somar}`
+}
+
+
+
+
+function apagarTags(tag){
+
+    let tags = document.querySelectorAll(tag)
+
+    for(let i = 0; i < tags.length; i++)
+    {
+        document.querySelectorAll(tag)[i].innerHTML = '' 
+    }
+}
+
+function adicionarTag(elementoSelecionado, tag){
+
+    elementoSelecionado.appendChild(document.createElement(tag))
+}
+
+function adicionarTags(elementoSelecionado, tags){
+
+    for(let i = 0; i < tags.length; i++)
+    {
+        elementoSelecionado.appendChild(document.createElement(tags[i]))
+    }
+
+}
+
+function adicionarConteudoTag(tag,chave,valor){
+    tag[chave] = valor
+}
+
+
