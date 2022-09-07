@@ -49,6 +49,10 @@ let btn1 = document.querySelector('.btn_cinza')
 let btn2 = document.querySelector('.btn_black')
 
 
+
+
+
+
 let res = document.querySelector('#res')
 res.innerHTML = `R$ 0,00`
 
@@ -56,6 +60,8 @@ res.innerHTML = `R$ 0,00`
 btn2.addEventListener('click', filtrarUm)
 btn1.addEventListener('click',filtrarTodos)
 btn.addEventListener('click',filtrarHortifruti)
+
+
 
 
 
@@ -89,17 +95,15 @@ function filtrarUm(){
 
 function mostrarProdutos(produtos){
    
-    apagarTags('ul')
+    apagarTags('#lista ul')
     
 
     for (let i = 0; i < produtos.length; i++)
     {
         
-        
-
         adicionarTag(document.getElementById('lista'),'ul')
     
-        adicionarTag(document.getElementsByTagName('ul')[i],'li')
+        adicionarTag(document.querySelectorAll('#lista ul')[i],'li')
         
         let tags = ['img','h3','p','span','button']
         adicionarTags(document.getElementsByTagName('li')[i], tags)
@@ -117,15 +121,55 @@ function mostrarProdutos(produtos){
         adicionarConteudoTag(span,"innerText",produtos[i].secao)
         adicionarConteudoTag(button,"innerText",'Comprar')
         adicionarConteudoTag(button,"id",produtos[i].id)
-        button.setAttribute("class","btn_produtos")
         button.setAttribute("class","btn")
    }
 
    let somar = produtos.map(obj => Number(obj.preco)).reduce((inicio,proximo) => {return inicio + proximo})
 
    res.innerHTML = `R$ ${somar}`
+
+   let banana = document.querySelector('#ban1')
+   let morango = document.querySelector('#mor2')
+   let maca = document.querySelector('#mac3')
+   let pao = document.querySelector('#pao4')
+   let leite = document.querySelector('#lei5')
+
+   banana.addEventListener('click',function(){mostrarProdutosCompras('ban1')})
+   morango.addEventListener('click',function(){mostrarProdutosCompras('mor2')})
+   maca.addEventListener('click',function(){mostrarProdutosCompras('mac3')})
+   pao.addEventListener('click',function(){mostrarProdutosCompras('pao4')})
+   leite.addEventListener('click',function(){mostrarProdutosCompras('lei5')})
+
 }
 
+
+function mostrarProdutosCompras(ids){
+     
+       let prod = ListaProdutos.filter(obj => obj.id === ids)
+        
+        adicionarTag(document.getElementById('compra'),'ul')
+        
+        let ul = document.querySelectorAll('#compra ul')
+
+        adicionarTag(document.querySelectorAll('#compra ul')[ul.length - 1],'li')
+        
+        let tags = ['img','h3','p']
+        adicionarTags(document.querySelectorAll('#compra li')[ul.length - 1], tags)
+        
+        let img = document.querySelectorAll('#compra img')[ul.length - 1]
+        let h3 = document.querySelectorAll('#compra h3')[ul.length - 1]
+        let p = document.querySelectorAll('#compra p')[ul.length - 1]
+        
+       console.log(prod)
+        
+        adicionarConteudoTag(img,'src',prod[0].img)
+        adicionarConteudoTag(img,"alt",prod[0].nome)
+        adicionarConteudoTag(h3,"innerText",prod[0].nome)
+        adicionarConteudoTag(p,"innerText",`R$ ${prod[0].preco}`)
+        
+
+
+}
 
 
 
