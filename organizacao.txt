@@ -1,0 +1,12 @@
+O que falta executar no codigo?
+
+
+- Organizacao - OK
+
+- colocar soma dos produtos do carrinho! OK
+
+- botao para limpar os produtos
+
+- botao ilustrativo para comprar
+
+- colocar msg de erro campo de pesquisa acima do carrinho!

@@ -3,6 +3,14 @@ body{
     margin: 0;
     box-sizing: border-box;
     text-decoration: none;
+    background-color: #f9fffd;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    flex-wrap: wrap;
 }
 
 
@@ -12,6 +20,11 @@ li{
     padding: 0;
     display: flex;
     flex-direction: column;
+}
+
+img{
+    width: 95px;
+    height: 95px;
 }
 
 h3{
@@ -25,18 +38,6 @@ p{
     text-align: center;
 }
 
-img{
-    width: 95px;
-    height: 95px;
-}
-
-header{
-    display: flex;
-    justify-content: space-between;
-    padding: 30px;
-    flex-wrap: wrap;
-    
-}
 
 button{
     background-color: green;
@@ -45,94 +46,91 @@ button{
 
 footer{
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    margin-left: 50px;
+    margin-top: 100px;
+    justify-content: center;
 }
 
-.btn
-{
-    padding: 10px 25px;
-    font-weight: 700;
-    border-radius:5px;
-    border: none;
-    margin-top: 10px;
-}
-
-.btn_cinza
-{
-    background-color: rgb(145, 143, 143);
-}
-
-.btn_vermelho
-{
-    background-color: rgb(237, 49, 49);
-    color: white;
-}
-
-.btn_input
-{
-    margin-right: 0;
-    font-weight: auto;
-    border: 1px solid black;
-    margin-right: -6px;
-    border-radius: unset;
-    font-weight: 200;
-}
-.btn_black
-{
-    margin: 0;
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-    border-radius: unset;
-
-}
-
-.btn:hover {
-
-    cursor: pointer;
-}
-
-button{
-    background-color: green;
-    color: aliceblue;
-}
-
-.rodape_valor {
-    margin: 20px 5px;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-
-.imagens {
-display: flex;
-justify-content: center;
-margin: 30px 0 20px;
-flex-wrap: wrap;
-}
-
-#compra{
-    margin: 50px;
-    padding: 5px;
     
-    border: 5px ridge black;
-}
-#compra img{
-    width: 70px;
-    height: 70px;
+    #listaCarrinho{
+        margin: 20px 50px;
+        padding: 5px;
+        border: 3px ridge black;
+    }
+    #listaCarrinho img,footer img{
+        width: 60px;
+        height: 60px;
+        
+    }
     
-}
+    #listaCarrinho p, #listaCarrinho h3,footer p{
+        font-size: 15px;
+        font-weight: 600;
+    }
+    
+    #listaCarrinho ul{
+        padding: 10px;
+        margin: -11px 5px;
+    }
 
-#compra p, #compra h3{
-    font-size: 15px;
-    font-weight: 600;
-}
+      .imagens {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0 20px;
+        flex-wrap: wrap;
+      }
 
-#compra ul{
-    padding: 10px;
-    margin: -11px 5px;
-}
+      .btn {
+        padding: 10px 25px;
+        font-weight: 700;
+        border-radius:5px;
+        border: none;
+        margin-top: 10px; 
+      }
+
+      .btn_cinza
+      {
+        background-color: rgb(145, 143, 143);
+      }
+
+      .btn_vermelho
+      {
+        background-color: rgb(237, 49, 49);
+        color: white;
+      }
+
+      .btn_input
+      {
+        margin-right: 0;
+        font-weight: auto;
+        border: 1px solid black;
+        margin-right: -6px;
+        border-radius: unset;
+        font-weight: 200;
+      }
+
+      .btn_black
+      {
+        margin: 0;
+        background-color: black;
+        color: white;
+        border: 1px solid black;
+        border-radius: unset;
+      }
+
+      .btn:hover {
+
+        cursor: pointer;
+      }
+
+
+      .rodape_valor {
+        margin: 20px 5px;
+        font-size: 25px;
+        font-weight: bold;
+      }
+
 
 
 

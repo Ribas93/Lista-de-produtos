@@ -69,14 +69,14 @@ function filtrarHortifruti(){
 
     let hortifruti = ListaProdutos.filter(obj => obj.secao === 'Hortifruti');
 
-     mostrarProdutos(hortifruti);
+    mostrarProdutosFiltro(hortifruti);
 }
 
 function filtrarTodos(){
 
     let todos = [...ListaProdutos];
 
-    mostrarProdutos(todos);
+    mostrarProdutosFiltro(todos);
 }
 
 function filtrarUm(){
@@ -84,26 +84,26 @@ function filtrarUm(){
     let valor = document.querySelector('.btn_input').value;
 
     
-    let selecionarUm = ListaProdutos
+    let selecionarPeloInput = ListaProdutos
     .filter(obj => obj.nome.toLowerCase() === valor.toLowerCase() || obj.secao.toLowerCase() === valor.toLowerCase());
      
-     selecionarUm.length !== 0 ?  mostrarProdutos(selecionarUm) : res.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`;
+    selecionarPeloInput.length !== 0 ?  mostrarProdutosFiltro(selecionarPeloInput) : res.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`;
  
 }
 
 
 
-function mostrarProdutos(produtos){
+function mostrarProdutosFiltro(produtos){
    
-    apagarTags('#lista ul')
+    apagarTags('#listaProcurar ul')
     
 
     for (let i = 0; i < produtos.length; i++)
     {
         
-        adicionarTag(document.getElementById('lista'),'ul')
+        adicionarTag(document.getElementById('listaProcurar'),'ul')
     
-        adicionarTag(document.querySelectorAll('#lista ul')[i],'li')
+        adicionarTag(document.querySelectorAll('#listaProcurar ul')[i],'li')
         
         let tags = ['img','h3','p','span','button']
         adicionarTags(document.getElementsByTagName('li')[i], tags)
@@ -124,9 +124,7 @@ function mostrarProdutos(produtos){
         button.setAttribute("class","btn")
    }
 
-   let somar = produtos.map(obj => Number(obj.preco)).reduce((inicio,proximo) => {return inicio + proximo})
-
-   res.innerHTML = `R$ ${somar}`
+   
 
    let banana = document.querySelector('#ban1')
    let morango = document.querySelector('#mor2')
@@ -140,38 +138,63 @@ function mostrarProdutos(produtos){
    pao.addEventListener('click',function(){mostrarProdutosCompras('pao4')})
    leite.addEventListener('click',function(){mostrarProdutosCompras('lei5')})
 
+   
+
 }
+
 
 
 function mostrarProdutosCompras(ids){
      
        let prod = ListaProdutos.filter(obj => obj.id === ids)
         
-        adicionarTag(document.getElementById('compra'),'ul')
+        adicionarTag(document.getElementById('listaCarrinho'),'ul')
         
-        let ul = document.querySelectorAll('#compra ul')
+        let ul = document.querySelectorAll('#listaCarrinho ul')
 
-        adicionarTag(document.querySelectorAll('#compra ul')[ul.length - 1],'li')
+        adicionarTag(document.querySelectorAll('#listaCarrinho ul')[ul.length - 1],'li')
         
         let tags = ['img','h3','p']
-        adicionarTags(document.querySelectorAll('#compra li')[ul.length - 1], tags)
+        adicionarTags(document.querySelectorAll('#listaCarrinho li')[ul.length - 1], tags)
         
-        let img = document.querySelectorAll('#compra img')[ul.length - 1]
-        let h3 = document.querySelectorAll('#compra h3')[ul.length - 1]
-        let p = document.querySelectorAll('#compra p')[ul.length - 1]
+        let img = document.querySelectorAll('#listaCarrinho img')[ul.length - 1]
+        let h3 = document.querySelectorAll('#listaCarrinho h3')[ul.length - 1]
+        let p = document.querySelectorAll('#listaCarrinho p')[ul.length - 1]
         
-       console.log(prod)
         
         adicionarConteudoTag(img,'src',prod[0].img)
         adicionarConteudoTag(img,"alt",prod[0].nome)
         adicionarConteudoTag(h3,"innerText",prod[0].nome)
         adicionarConteudoTag(p,"innerText",`R$ ${prod[0].preco}`)
         
+        let somar = somaProds('#listaCarrinho p')
 
+         res.innerHTML = `R$ ${somar}`
 
 }
 
+function somaProds(tag){
 
+   let arrayTags =  document.querySelectorAll(tag)
+   
+   let soma = 0;
+
+   for (let i = 0; i < arrayTags.length; i++)
+   {
+    soma += somenteNumeros(document.querySelectorAll(tag)[i].innerHTML)
+   }
+
+   return soma
+}
+
+function somenteNumeros(string)
+{
+    
+    let numStr = string.replace(/[^0-9]/g,'')
+
+    return parseInt(numStr)
+
+}
 
 function apagarTags(tag){
 
