@@ -48,15 +48,15 @@ footer{
     display: flex;
     flex-wrap: wrap;
     margin-left: 50px;
-    margin-top: 100px;
+    margin-top: 70px;
     justify-content: center;
 }
 
     
     #listaCarrinho{
-        margin: 20px 50px;
+        margin: 20px 50px 0 50px;
         padding: 5px;
-        border: 3px ridge black;
+        
     }
     #listaCarrinho img,footer img{
         width: 60px;
@@ -74,6 +74,18 @@ footer{
         margin: -11px 5px;
     }
 
+    #botoes{
+       margin: 10px 50px;  
+       display: flex;
+       justify-content: space-between;  
+    }
+
+    #resInp {
+      font-size: 20px;
+      text-align: center;
+      font-weight: 600;
+      
+    }
       .imagens {
         display: flex;
         justify-content: center;
@@ -115,8 +127,14 @@ footer{
         margin: 0;
         background-color: black;
         color: white;
-        border: 1px solid black;
         border-radius: unset;
+        border: 1px solid black;
+      }
+
+      .btn_carrinho
+      {
+        display: none;
+        margin-top: 0;
       }
 
       .btn:hover {

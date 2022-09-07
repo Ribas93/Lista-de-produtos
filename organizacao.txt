@@ -5,8 +5,8 @@ O que falta executar no codigo?
 
 - colocar soma dos produtos do carrinho! OK
 
-- botao para limpar os produtos
+- botao para limpar os produtos OK
 
-- botao ilustrativo para comprar
+- botao ilustrativo para comprar OK
 
-- colocar msg de erro campo de pesquisa acima do carrinho!
+- colocar msg de erro campo de pesquisa acima do carrinho! OK

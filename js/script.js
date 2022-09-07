@@ -52,7 +52,7 @@ let btn2 = document.querySelector('.btn_black')
 
 
 
-
+let resInp = document.querySelector('#resInp')
 let res = document.querySelector('#res')
 res.innerHTML = `R$ 0,00`
 
@@ -85,9 +85,9 @@ function filtrarUm(){
 
     
     let selecionarPeloInput = ListaProdutos
-    .filter(obj => obj.nome.toLowerCase() === valor.toLowerCase() || obj.secao.toLowerCase() === valor.toLowerCase());
+    .filter(obj => obj.nome.toLowerCase().includes(valor.toLowerCase()) || obj.secao.toLowerCase().includes(valor.toLowerCase()));
      
-    selecionarPeloInput.length !== 0 ?  mostrarProdutosFiltro(selecionarPeloInput) : res.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`;
+    selecionarPeloInput.length !== 0 ?  mostrarProdutosFiltro(selecionarPeloInput) : resInp.innerHTML = `O produto/seção "<u>${valor}</u>" não existe!`;
  
 }
 
@@ -97,6 +97,7 @@ function mostrarProdutosFiltro(produtos){
    
     apagarTags('#listaProcurar ul')
     
+    resInp.innerHTML = "" 
 
     for (let i = 0; i < produtos.length; i++)
     {
@@ -145,7 +146,17 @@ function mostrarProdutosFiltro(produtos){
 
 
 function mostrarProdutosCompras(ids){
+
+    resInp.innerHTML = "" 
+    
+    let carrinho = document.getElementById('listaCarrinho')
+    let btnCompra = document.querySelectorAll("#botoes input")[0]
+    let btnLimpar =document.querySelectorAll("#botoes input")[1]
      
+    carrinho.style.border = '2px ridge black'
+    btnCompra.style.display = "block"
+    btnLimpar.style.display = "block"
+    
        let prod = ListaProdutos.filter(obj => obj.id === ids)
         
         adicionarTag(document.getElementById('listaCarrinho'),'ul')
@@ -170,6 +181,14 @@ function mostrarProdutosCompras(ids){
         let somar = somaProds('#listaCarrinho p')
 
          res.innerHTML = `R$ ${somar}`
+
+            btnLimpar.addEventListener('click', function(){
+                apagarTags("#listaCarrinho ul")
+                carrinho.style.border = 'none'
+                btnCompra.style.display = 'none'
+                btnLimpar.style.display = 'none'
+                res.innerHTML = "R$ 0,00"
+            })
 
 }
 
